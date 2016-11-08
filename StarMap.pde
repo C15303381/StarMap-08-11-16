@@ -4,21 +4,33 @@ C15303381
 */
 
 ArrayList<Star> star = new ArrayList<Star>();
-
 Table table;
- 
+
 void setup()
 {
   size(800,800);
-  background(0,0,0);
+ 
+  table = loadTable("StarMapData.csv", "header");
+  
+  for (TableRow row : table.rows())
+  {
+    int hab = row.getInt("Hab?");
+    String displayname = row.getString("DisplayName");
+    Float distance = row.getFloat("Distance");
+    Float xg = row.getFloat("Xg");
+    Float yg = row.getFloat("Yg");
+    Float zg = row.getFloat("Zg");
+    Float absmag = row.getFloat("AbsMag");
+    
+    println(Hab? + displayName + distance + xg + yg + zg + absmag );
+    
+  }
 }
 
 
 class Star 
 { 
-    table = new Table();
-    
-    table.addColumn("", Table.INT);
+  {
     table.addColumn("Hab?", Table.INT);
     table.addColumn("DisplayName", Table.STRING);
     table.addColumn("Distance", Table.FLOAT);
@@ -26,13 +38,10 @@ class Star
     table.addColumn("Yg", Table.FLOAT);
     table.addColumn("Zg", Table.FLOAT);
     table.addColumn("AbsMag", Table.FLOAT);  
-    
-    TableRow row = Table.addRow();
-    row.getInt("Hab?");
-    row.getString("DisplayName");
-    row.getFloat("Distance");
-    row.getFloat("Xg");
-    row.getFloat("Yg");
-    row.getFloat("Zg");
-    row.getFloat("AbsMag");
+  }
+}
+
+void draw()
+{
+   background(0,0,0);
 }
